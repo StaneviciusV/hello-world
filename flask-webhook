@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, Response
 
 app = Flask(__name__)
 
@@ -39,12 +39,8 @@ def form_example():
 def json_example():
     req_data = request.get_json()
     print(req_data)
-    return '''
-           The language value is: {}
-           The framework value is: {}
-           The Python version is: {}
-           The item at index 0 in the example list is: {}
-           The boolean value is: {}'''
+    content = {'please move along': 'nothing to see here'}
+    return Response(content, status=201, mimetype='application/json')
 
 if __name__ == '__main__':
     app.run(debug=True, port=5000) #run app in debug mode on port 5000
